@@ -1,0 +1,154 @@
+﻿@{
+    var doc1 = ViewBag.doc1 as IEnumerable<Hospital_Web.Models.Doctor>;
+}
+
+@{
+    var wd1 = ViewBag.wd1 as IEnumerable<Hospital_Web.Models.Work_Date>;
+}
+
+@{
+    var date1 = ViewBag.date1 as IEnumerable<Hospital_Web.Models.Date1>;
+}
+
+@using Hospital_Web.Models;
+
+
+
+
+@if (doc1 != null && wd1 != null && date1 != null)
+{
+    <h2 class="text-center">Working Days</h2>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="searchtext1" onkeyup="Search1()" placeholder="Search"/>
+        </div>
+        <div class="col-sm-3">
+            <img src="~/Img/plus.png" title="Add Wok Date" style="width:32px; height:32px; cursor:pointer " onclick="AddWD()" />
+            &nbsp;
+            <img src="~/Img/refresh.png" title="Refresh" alt="Refresh" style="width:32px; height:32px; cursor:pointer " onclick="nav1('@Url.Action("WorkDayView","Home")')" />
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10" style="overflow:auto ; height:500px">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Doctor</th>
+                        <th style="text-align:center">Date</th>
+                        <th style="text-align:center">Time</th>
+                        <th style="text-align:center">Max</th>
+                        <th style="text-align:center">Status</th>
+                        <th style="text-align:center">Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="SearchView">
+                    @foreach (Work_Date item in wd1)
+            {
+                        
+                    <tr class="sview">
+                        <td>@item.Doctor.Doctor_Name.ToString().Trim()</td>
+                        <td>@item.Date1.Date_Of_Week.ToString().Trim()</td>
+                        <td>@DateTime.Parse(item.Start_Time.ToString().Trim()).ToString("HH:mm") - @DateTime.Parse(item.End_Time.ToString().Trim()).ToString("HH:mm")</td>
+                        <td>@item.Max_Patient.ToString().Trim()</td>
+                        <td>
+                            @if (item.Status.ToString().Trim() == "1")
+    {
+                        <img src="~/Img/come.png" style="width:32px; height:32px; cursor:pointer" onclick="setWDSt(@item.Work_Date_ID, 0)"/>
+}
+else
+{
+                        <img src="~/Img/notcome.png" style="width:32px; height:32px; cursor:pointer" onclick="setWDSt(@item.Work_Date_ID,1)"/>
+}
+                        </td>
+                        <td>
+                            <img src="~/Img/delete3.png" title="Remove" alt="Remove" style="width:32px; height:32px; cursor:pointer " onclick="RemoveWD('@item.Work_Date_ID')" />
+                        </td>
+                    </tr>
+    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+}
+
+    <div id="vmodal2">
+
+    </div>
+
+    <script>
+
+        function setWDSt(id1,st) {
+        $.ajax({
+                type: "post",
+                data: { id1: id1 , st:st},
+                url: "/Admin/SetWDStatus",
+                success: function (result) {
+                    if (result == "S") {
+                        nav1('@Url.Action("WorkDayView","Home")');
+                    } else {
+                        alert("Unsuccess");
+                    }
+                }
+            });
+        }
+
+
+        function Contains(t1,t2) {
+            if (t1.indexOf(t2) != -1) {
+                return true;
+            }
+        }
+
+        function Search1() {
+            var searchtext1 = $("#searchtext1").val().toLowerCase().trim();
+            $(".sview").each(function () {
+                if (!Contains($(this).text().toLowerCase().trim(), searchtext1)) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+        }
+
+        function AddWD() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/AddWorkDateView",
+                success: function (result) {
+                    //alert(result);
+                    $("#vmodal2").html(result);
+                    $("#msg1").hide();
+                    $("#msg2").hide();
+                    $("#ShowModa3").modal();
+
+                }
+            });
+        }
+
+        function RemoveWD(id1) {
+            $.ajax({
+                type: "post",
+                data: {id1:id1},
+                url: "/Admin/RemoveWD",
+                success: function (result) {
+                    if (result == "S") {
+                        nav1('@Url.Action("WorkDayView","Home")');
+                    } else {
+                        alert("Unsuccess");
+                    }
+                }
+            });
+        }
+
+    </script>

@@ -1,0 +1,1088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Hospital_WebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="Channel_ID" />
+          </Key>
+          <Property Name="Channel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_ID" Type="int" />
+          <Property Name="Channel_Date1" Type="datetime" />
+          <Property Name="Channel_Date2" Type="datetime" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="No1" Type="nchar" MaxLength="10" />
+          <Property Name="Contact1" Type="nchar" MaxLength="20" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Work_Date_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Date1">
+          <Key>
+            <PropertyRef Name="Date_ID" />
+          </Key>
+          <Property Name="Date_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date_Of_Week" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_ID" />
+          </Key>
+          <Property Name="Doctor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_Name" Type="nchar" MaxLength="200" />
+          <Property Name="Specialty_ID" Type="int" />
+          <Property Name="Hostpital" Type="nchar" MaxLength="500" />
+          <Property Name="Contact1" Type="nchar" MaxLength="20" />
+          <Property Name="Contact2" Type="nchar" MaxLength="20" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Img" Type="image" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Home_Visit">
+          <Key>
+            <PropertyRef Name="Home_Visit_ID" />
+          </Key>
+          <Property Name="Home_Visit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_ID" Type="int" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Date1" Type="date" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Login_ID" />
+          </Key>
+          <Property Name="Login_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="100" />
+          <Property Name="Password" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Role_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Not_Coming">
+          <Key>
+            <PropertyRef Name="Not_Coming_ID" />
+          </Key>
+          <Property Name="Not_Coming_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_ID" Type="int" />
+          <Property Name="Date1" Type="date" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Page1">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Page_Name" Type="nchar" MaxLength="100" />
+          <Property Name="Page_Controller" Type="nchar" MaxLength="100" />
+          <Property Name="Page_Method" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Role_Page">
+          <Key>
+            <PropertyRef Name="Role_Page_ID" />
+          </Key>
+          <Property Name="Role_Page_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_ID" Type="int" />
+          <Property Name="Page_ID" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Role1">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Name" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Sick">
+          <Key>
+            <PropertyRef Name="Sick_ID" />
+          </Key>
+          <Property Name="Sick_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sick_Name" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Sick_Visit">
+          <Key>
+            <PropertyRef Name="Sick_Visit_ID" />
+          </Key>
+          <Property Name="Sick_Visit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Home_Visit_ID" Type="int" />
+          <Property Name="Sick_ID" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="Specialty_ID" />
+          </Key>
+          <Property Name="Specialty_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Specialty" Type="nchar" MaxLength="500" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="nchar" MaxLength="500" />
+          <Property Name="Last_Name" Type="nchar" MaxLength="500" />
+          <Property Name="Street1" Type="nchar" MaxLength="1000" />
+          <Property Name="City" Type="nchar" MaxLength="500" />
+          <Property Name="Contact1" Type="nchar" MaxLength="20" />
+          <Property Name="Contact2" Type="nchar" MaxLength="20" />
+          <Property Name="Email1" Type="nchar" MaxLength="500" />
+          <Property Name="Fax1" Type="nchar" MaxLength="100" />
+          <Property Name="NICOrPassport" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Work_Date">
+          <Key>
+            <PropertyRef Name="Work_Date_ID" />
+          </Key>
+          <Property Name="Work_Date_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date_ID" Type="int" />
+          <Property Name="Doctor_ID" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Start_Time" Type="datetime" />
+          <Property Name="End_Time" Type="datetime" />
+          <Property Name="Max_Patient" Type="int" />
+        </EntityType>
+        <Association Name="FK_Channel_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Channel_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialty">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="Specialty_ID" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="Specialty_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Home_Visit_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Home_Visit">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Home_Visit_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Home_Visit">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Role1">
+          <End Role="Role1" Type="Self.Role1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role1">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Not_Coming_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Not_Coming" Type="Self.Not_Coming" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Not_Coming">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Page_Page1">
+          <End Role="Page1" Type="Self.Page1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Role_Page" Type="Self.Role_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page1">
+              <PropertyRef Name="Page_ID" />
+            </Principal>
+            <Dependent Role="Role_Page">
+              <PropertyRef Name="Page_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Page_Role1">
+          <End Role="Role1" Type="Self.Role1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Role_Page" Type="Self.Role_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role1">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Role_Page">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sick_Visit_Home_Visit">
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sick_Visit" Type="Self.Sick_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home_Visit">
+              <PropertyRef Name="Home_Visit_ID" />
+            </Principal>
+            <Dependent Role="Sick_Visit">
+              <PropertyRef Name="Home_Visit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sick_Visit_Sick">
+          <End Role="Sick" Type="Self.Sick" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sick_Visit" Type="Self.Sick_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sick">
+              <PropertyRef Name="Sick_ID" />
+            </Principal>
+            <Dependent Role="Sick_Visit">
+              <PropertyRef Name="Sick_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Date_Date1">
+          <End Role="Date1" Type="Self.Date1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Work_Date" Type="Self.Work_Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date1">
+              <PropertyRef Name="Date_ID" />
+            </Principal>
+            <Dependent Role="Work_Date">
+              <PropertyRef Name="Date_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Date_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Work_Date" Type="Self.Work_Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Work_Date">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Hospital_WebModelStoreContainer">
+          <EntitySet Name="Channel" EntityType="Self.Channel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Date1" EntityType="Self.Date1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Home_Visit" EntityType="Self.Home_Visit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Not_Coming" EntityType="Self.Not_Coming" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page1" EntityType="Self.Page1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_Page" EntityType="Self.Role_Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role1" EntityType="Self.Role1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sick" EntityType="Self.Sick" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sick_Visit" EntityType="Self.Sick_Visit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialty" EntityType="Self.Specialty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Work_Date" EntityType="Self.Work_Date" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Channel_Doctor" Association="Self.FK_Channel_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Channel" EntitySet="Channel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Channel_User_Details" Association="Self.FK_Channel_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Channel" EntitySet="Channel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialty" Association="Self.FK_Doctor_Specialty">
+            <End Role="Specialty" EntitySet="Specialty" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Home_Visit_Doctor" Association="Self.FK_Home_Visit_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Home_Visit_User_Details" Association="Self.FK_Home_Visit_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Role1" Association="Self.FK_Login_Role1">
+            <End Role="Role1" EntitySet="Role1" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_User_Details" Association="Self.FK_Login_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Not_Coming_Doctor" Association="Self.FK_Not_Coming_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Not_Coming" EntitySet="Not_Coming" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Page_Page1" Association="Self.FK_Role_Page_Page1">
+            <End Role="Page1" EntitySet="Page1" />
+            <End Role="Role_Page" EntitySet="Role_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Page_Role1" Association="Self.FK_Role_Page_Role1">
+            <End Role="Role1" EntitySet="Role1" />
+            <End Role="Role_Page" EntitySet="Role_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sick_Visit_Home_Visit" Association="Self.FK_Sick_Visit_Home_Visit">
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+            <End Role="Sick_Visit" EntitySet="Sick_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sick_Visit_Sick" Association="Self.FK_Sick_Visit_Sick">
+            <End Role="Sick" EntitySet="Sick" />
+            <End Role="Sick_Visit" EntitySet="Sick_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Date_Date1" Association="Self.FK_Work_Date_Date1">
+            <End Role="Date1" EntitySet="Date1" />
+            <End Role="Work_Date" EntitySet="Work_Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Date_Doctor" Association="Self.FK_Work_Date_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Work_Date" EntitySet="Work_Date" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Hospital_WebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="Channel_ID" />
+          </Key>
+          <Property Name="Channel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_ID" Type="Int32" />
+          <Property Name="Channel_Date1" Type="DateTime" Precision="3" />
+          <Property Name="Channel_Date2" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="No1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Contact1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Work_Date_ID" Type="Int32" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Channel_Doctor" FromRole="Channel" ToRole="Doctor" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK_Channel_User_Details" FromRole="Channel" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="Date1">
+          <Key>
+            <PropertyRef Name="Date_ID" />
+          </Key>
+          <Property Name="Date_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_Of_Week" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Work_Date" Relationship="Self.FK_Work_Date_Date1" FromRole="Date1" ToRole="Work_Date" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_ID" />
+          </Key>
+          <Property Name="Doctor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Specialty_ID" Type="Int32" />
+          <Property Name="Hostpital" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Contact1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Contact2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Channels" Relationship="Self.FK_Channel_Doctor" FromRole="Doctor" ToRole="Channel" />
+          <NavigationProperty Name="Specialty" Relationship="Self.FK_Doctor_Specialty" FromRole="Doctor" ToRole="Specialty" />
+          <NavigationProperty Name="Home_Visit" Relationship="Self.FK_Home_Visit_Doctor" FromRole="Doctor" ToRole="Home_Visit" />
+          <NavigationProperty Name="Not_Coming" Relationship="Self.FK_Not_Coming_Doctor" FromRole="Doctor" ToRole="Not_Coming" />
+          <NavigationProperty Name="Work_Date" Relationship="Self.FK_Work_Date_Doctor" FromRole="Doctor" ToRole="Work_Date" />
+        </EntityType>
+        <EntityType Name="Home_Visit">
+          <Key>
+            <PropertyRef Name="Home_Visit_ID" />
+          </Key>
+          <Property Name="Home_Visit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Date1" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Home_Visit_Doctor" FromRole="Home_Visit" ToRole="Doctor" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK_Home_Visit_User_Details" FromRole="Home_Visit" ToRole="User_Details" />
+          <NavigationProperty Name="Sick_Visit" Relationship="Self.FK_Sick_Visit_Home_Visit" FromRole="Home_Visit" ToRole="Sick_Visit" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Login_ID" />
+          </Key>
+          <Property Name="Login_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Role_ID" Type="Int32" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Login_Role1" FromRole="Login" ToRole="Role1" />
+          <NavigationProperty Name="User_Details" Relationship="Self.FK_Login_User_Details" FromRole="Login" ToRole="User_Details" />
+        </EntityType>
+        <EntityType Name="Not_Coming">
+          <Key>
+            <PropertyRef Name="Not_Coming_ID" />
+          </Key>
+          <Property Name="Not_Coming_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_ID" Type="Int32" />
+          <Property Name="Date1" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Not_Coming_Doctor" FromRole="Not_Coming" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="Page1">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Page_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Page_Controller" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Page_Method" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Role_Page" Relationship="Self.FK_Role_Page_Page1" FromRole="Page1" ToRole="Role_Page" />
+        </EntityType>
+        <EntityType Name="Role_Page">
+          <Key>
+            <PropertyRef Name="Role_Page_ID" />
+          </Key>
+          <Property Name="Role_Page_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="Page_ID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Page1" Relationship="Self.FK_Role_Page_Page1" FromRole="Role_Page" ToRole="Page1" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Role_Page_Role1" FromRole="Role_Page" ToRole="Role1" />
+        </EntityType>
+        <EntityType Name="Role1">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Logins" Relationship="Self.FK_Login_Role1" FromRole="Role1" ToRole="Login" />
+          <NavigationProperty Name="Role_Page" Relationship="Self.FK_Role_Page_Role1" FromRole="Role1" ToRole="Role_Page" />
+        </EntityType>
+        <EntityType Name="Sick">
+          <Key>
+            <PropertyRef Name="Sick_ID" />
+          </Key>
+          <Property Name="Sick_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sick_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Sick_Visit" Relationship="Self.FK_Sick_Visit_Sick" FromRole="Sick" ToRole="Sick_Visit" />
+        </EntityType>
+        <EntityType Name="Sick_Visit">
+          <Key>
+            <PropertyRef Name="Sick_Visit_ID" />
+          </Key>
+          <Property Name="Sick_Visit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Home_Visit_ID" Type="Int32" />
+          <Property Name="Sick_ID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Home_Visit" Relationship="Self.FK_Sick_Visit_Home_Visit" FromRole="Sick_Visit" ToRole="Home_Visit" />
+          <NavigationProperty Name="Sick" Relationship="Self.FK_Sick_Visit_Sick" FromRole="Sick_Visit" ToRole="Sick" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="Specialty_ID" />
+          </Key>
+          <Property Name="Specialty_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Specialty1" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_Doctor_Specialty" FromRole="Specialty" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Street1" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Contact1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Contact2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Fax1" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="NICOrPassport" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Channels" Relationship="Self.FK_Channel_User_Details" FromRole="User_Details" ToRole="Channel" />
+          <NavigationProperty Name="Home_Visit" Relationship="Self.FK_Home_Visit_User_Details" FromRole="User_Details" ToRole="Home_Visit" />
+          <NavigationProperty Name="Logins" Relationship="Self.FK_Login_User_Details" FromRole="User_Details" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Work_Date">
+          <Key>
+            <PropertyRef Name="Work_Date_ID" />
+          </Key>
+          <Property Name="Work_Date_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_ID" Type="Int32" />
+          <Property Name="Doctor_ID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Start_Time" Type="DateTime" Precision="3" />
+          <Property Name="End_Time" Type="DateTime" Precision="3" />
+          <Property Name="Max_Patient" Type="Int32" />
+          <NavigationProperty Name="Date1" Relationship="Self.FK_Work_Date_Date1" FromRole="Work_Date" ToRole="Date1" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Work_Date_Doctor" FromRole="Work_Date" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK_Channel_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Channel_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Date_Date1">
+          <End Role="Date1" Type="Self.Date1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Work_Date" Type="Self.Work_Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date1">
+              <PropertyRef Name="Date_ID" />
+            </Principal>
+            <Dependent Role="Work_Date">
+              <PropertyRef Name="Date_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialty">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="Specialty_ID" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="Specialty_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Home_Visit_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Home_Visit">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Not_Coming_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Not_Coming" Type="Self.Not_Coming" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Not_Coming">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Date_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Work_Date" Type="Self.Work_Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="Work_Date">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Home_Visit_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Home_Visit">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sick_Visit_Home_Visit">
+          <End Role="Home_Visit" Type="Self.Home_Visit" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sick_Visit" Type="Self.Sick_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home_Visit">
+              <PropertyRef Name="Home_Visit_ID" />
+            </Principal>
+            <Dependent Role="Sick_Visit">
+              <PropertyRef Name="Home_Visit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Role1">
+          <End Role="Role1" Type="Self.Role1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role1">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_User_Details">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Page_Page1">
+          <End Role="Page1" Type="Self.Page1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Role_Page" Type="Self.Role_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page1">
+              <PropertyRef Name="Page_ID" />
+            </Principal>
+            <Dependent Role="Role_Page">
+              <PropertyRef Name="Page_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Page_Role1">
+          <End Role="Role1" Type="Self.Role1" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Role_Page" Type="Self.Role_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role1">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Role_Page">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sick_Visit_Sick">
+          <End Role="Sick" Type="Self.Sick" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sick_Visit" Type="Self.Sick_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sick">
+              <PropertyRef Name="Sick_ID" />
+            </Principal>
+            <Dependent Role="Sick_Visit">
+              <PropertyRef Name="Sick_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Hospital_WebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Channels" EntityType="Self.Channel" />
+          <EntitySet Name="Date1" EntityType="Self.Date1" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Home_Visit" EntityType="Self.Home_Visit" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Not_Coming" EntityType="Self.Not_Coming" />
+          <EntitySet Name="Page1" EntityType="Self.Page1" />
+          <EntitySet Name="Role_Page" EntityType="Self.Role_Page" />
+          <EntitySet Name="Role1" EntityType="Self.Role1" />
+          <EntitySet Name="Sicks" EntityType="Self.Sick" />
+          <EntitySet Name="Sick_Visit" EntityType="Self.Sick_Visit" />
+          <EntitySet Name="Specialties" EntityType="Self.Specialty" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" />
+          <EntitySet Name="Work_Date" EntityType="Self.Work_Date" />
+          <AssociationSet Name="FK_Channel_Doctor" Association="Self.FK_Channel_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Channel" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Channel_User_Details" Association="Self.FK_Channel_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Channel" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Date_Date1" Association="Self.FK_Work_Date_Date1">
+            <End Role="Date1" EntitySet="Date1" />
+            <End Role="Work_Date" EntitySet="Work_Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialty" Association="Self.FK_Doctor_Specialty">
+            <End Role="Specialty" EntitySet="Specialties" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Home_Visit_Doctor" Association="Self.FK_Home_Visit_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Not_Coming_Doctor" Association="Self.FK_Not_Coming_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Not_Coming" EntitySet="Not_Coming" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Date_Doctor" Association="Self.FK_Work_Date_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Work_Date" EntitySet="Work_Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Home_Visit_User_Details" Association="Self.FK_Home_Visit_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sick_Visit_Home_Visit" Association="Self.FK_Sick_Visit_Home_Visit">
+            <End Role="Home_Visit" EntitySet="Home_Visit" />
+            <End Role="Sick_Visit" EntitySet="Sick_Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Role1" Association="Self.FK_Login_Role1">
+            <End Role="Role1" EntitySet="Role1" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_User_Details" Association="Self.FK_Login_User_Details">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Page_Page1" Association="Self.FK_Role_Page_Page1">
+            <End Role="Page1" EntitySet="Page1" />
+            <End Role="Role_Page" EntitySet="Role_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Page_Role1" Association="Self.FK_Role_Page_Role1">
+            <End Role="Role1" EntitySet="Role1" />
+            <End Role="Role_Page" EntitySet="Role_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sick_Visit_Sick" Association="Self.FK_Sick_Visit_Sick">
+            <End Role="Sick" EntitySet="Sicks" />
+            <End Role="Sick_Visit" EntitySet="Sick_Visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Hospital_WebModelStoreContainer" CdmEntityContainer="Hospital_WebEntities">
+          <EntitySetMapping Name="Channels">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Channel">
+              <MappingFragment StoreEntitySet="Channel">
+                <ScalarProperty Name="Channel_ID" ColumnName="Channel_ID" />
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Channel_Date1" ColumnName="Channel_Date1" />
+                <ScalarProperty Name="Channel_Date2" ColumnName="Channel_Date2" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="No1" ColumnName="No1" />
+                <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Work_Date_ID" ColumnName="Work_Date_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Date1">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Date1">
+              <MappingFragment StoreEntitySet="Date1">
+                <ScalarProperty Name="Date_ID" ColumnName="Date_ID" />
+                <ScalarProperty Name="Date_Of_Week" ColumnName="Date_Of_Week" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Specialty_ID" ColumnName="Specialty_ID" />
+                <ScalarProperty Name="Hostpital" ColumnName="Hostpital" />
+                <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+                <ScalarProperty Name="Contact2" ColumnName="Contact2" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Home_Visit">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Home_Visit">
+              <MappingFragment StoreEntitySet="Home_Visit">
+                <ScalarProperty Name="Home_Visit_ID" ColumnName="Home_Visit_ID" />
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Date1" ColumnName="Date1" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Not_Coming">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Not_Coming">
+              <MappingFragment StoreEntitySet="Not_Coming">
+                <ScalarProperty Name="Not_Coming_ID" ColumnName="Not_Coming_ID" />
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Date1" ColumnName="Date1" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Page1">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Page1">
+              <MappingFragment StoreEntitySet="Page1">
+                <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+                <ScalarProperty Name="Page_Name" ColumnName="Page_Name" />
+                <ScalarProperty Name="Page_Controller" ColumnName="Page_Controller" />
+                <ScalarProperty Name="Page_Method" ColumnName="Page_Method" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_Page">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Role_Page">
+              <MappingFragment StoreEntitySet="Role_Page">
+                <ScalarProperty Name="Role_Page_ID" ColumnName="Role_Page_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role1">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Role1">
+              <MappingFragment StoreEntitySet="Role1">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sicks">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Sick">
+              <MappingFragment StoreEntitySet="Sick">
+                <ScalarProperty Name="Sick_ID" ColumnName="Sick_ID" />
+                <ScalarProperty Name="Sick_Name" ColumnName="Sick_Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sick_Visit">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Sick_Visit">
+              <MappingFragment StoreEntitySet="Sick_Visit">
+                <ScalarProperty Name="Sick_Visit_ID" ColumnName="Sick_Visit_ID" />
+                <ScalarProperty Name="Home_Visit_ID" ColumnName="Home_Visit_ID" />
+                <ScalarProperty Name="Sick_ID" ColumnName="Sick_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialties">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Specialty">
+              <MappingFragment StoreEntitySet="Specialty">
+                <ScalarProperty Name="Specialty_ID" ColumnName="Specialty_ID" />
+                <ScalarProperty Name="Specialty1" ColumnName="Specialty" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Hospital_WebModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Details">
+            <EntityTypeMapping TypeName="Hospital_WebModel.User_Details">
+              <MappingFragment StoreEntitySet="User_Details">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Street1" ColumnName="Street1" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+                <ScalarProperty Name="Contact2" ColumnName="Contact2" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Fax1" ColumnName="Fax1" />
+                <ScalarProperty Name="NICOrPassport" ColumnName="NICOrPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Work_Date">
+            <EntityTypeMapping TypeName="Hospital_WebModel.Work_Date">
+              <MappingFragment StoreEntitySet="Work_Date">
+                <ScalarProperty Name="Work_Date_ID" ColumnName="Work_Date_ID" />
+                <ScalarProperty Name="Date_ID" ColumnName="Date_ID" />
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Max_Patient" ColumnName="Max_Patient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

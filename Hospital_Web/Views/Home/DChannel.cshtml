@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Docotr Channeling";
+
+}
+
+@{
+    var doc1 = ViewBag.doc as IEnumerable<Hospital_Web.Models.Doctor>;
+}
+
+@{
+    var spec = ViewBag.spec as IEnumerable<Hospital_Web.Models.Specialty>;
+}
+
+@{
+    var date1 = ViewBag.date1 as IEnumerable<Hospital_Web.Models.Date1>;
+}
+
+
+@using Hospital_Web.Models;
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<br />
+<br />
+<br/> 
+<h2 class="text-center">Doctor Channeling</h2>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+           
+            <form id="SearchForm">
+
+                <div class="form-group">
+                    <label class="control-label" for="Specialty1">Specialty</label>
+                    <select id="Specialty1" name="Specialty1" class="form-control">
+                        <option value="0">Any</option>
+                        @foreach (Specialty item in spec)
+            {
+                <option value="@item.Specialty_ID">@item.Specialty1</option>
+}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="d_name">Doctor</label>
+                    <select id="d_name" name="d_name" class="form-control">
+                        <option value="0">Any</option>
+                        @foreach (Doctor item in doc1)
+            {
+                <option value="@item.Doctor_ID">@item.Doctor_Name</option>
+}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="date1">Date</label>
+                    <select id="date1" name="date1" class="form-control">
+                        <option value="0">Any</option>
+                        @foreach (Date1 item in date1)
+            {
+                <option value="@item.Date_ID">@item.Date_Of_Week</option>
+}
+                    </select>
+                </div>
+                <input type="hidden" value="0" id="skip1" name="skip1" />
+                <button type="button" id="search1" class="btn btn-default btn-block" onclick="Load1()">Search</button>
+
+            </form>
+
+        </div>
+
+
+
+        <div class="col-md-9" id="dview1">
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="vmodal1">
+
+</div>
+
+
+
+<script>
+
+    function Load1() {
+        $("#skip1").val("0");
+        LoadView();
+    }
+    
+    function LoadView() {
+
+        var data2 = $("#SearchForm").serialize();
+
+        $.ajax({
+            type: "post",
+            data: data2,
+            url: "/Home/DChannelView",
+            success: function (result) {
+
+                $("#dview1").html(result);
+
+            }
+        });
+
+    }
+
+
+    function View1(id1) {
+        GetViewDetails(id1);
+
+    }
+
+
+
+    function GetViewDetails(id1) {
+
+        $.ajax({
+            type: "post",
+            data: { id:id1},
+            url: "/Channel/GetViewDetails1",
+            success: function (result) {
+                
+                    $("#vmodal1").html(result);
+                    $("#msg1").hide();
+                    $("#msg2").hide();
+                    $("#ShowModa2").modal();
+                
+            }
+        });
+    }
+
+    LoadView();
+    
+    function Previous1() {
+        var sk = $("#skip1").val();
+        var sk2=parseInt(sk) - 4;
+        if (sk2 >= 0) {
+            $("#skip1").val(sk2);
+            //alert($("#skip1").val());
+            LoadView();
+        }
+        
+    }
+
+    function Next1() {
+        var sk = $("#skip1").val();
+        $("#skip1").val(parseInt(sk) + 4);
+        //alert($("#skip1").val());
+        LoadView();
+    }
+
+</script>

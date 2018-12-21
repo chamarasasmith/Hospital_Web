@@ -1,0 +1,46 @@
+﻿@model Hospital_Web.Models.Doctor
+@using Hospital_Web.Models;
+
+
+<div class="row">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pull-right">
+            <li class="page-item">
+                <a class="page-link" onclick="Previous1()" style="cursor:pointer">Previous</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" onclick="Next1()" style="cursor:pointer">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row">
+    @foreach (Doctor item in ViewBag.dlist)
+    {
+
+
+
+        <div class="col-md-3">
+            <ul class="media-list">
+                <li class="media">
+                    <div class="media-left">
+                        <a href="#">
+                        <img class="media-object" src="@ViewImages.View1(item.Img,item.Gender)" style="width:100%;height:auto; padding:30px">
+                        </a>
+                    </div>
+                    <div class="media-body text-center">
+                        <h4 class="media-heading" style="height:40px">Dr @item.Doctor_Name</h4>
+                        @*<h5 style="color:red;font-weight:bold">@item.Specialty.Specialty1</h5>
+        <h5 style="color:red;font-weight:bold">@item.Hostpital</h5>*@
+                        <input id="Button1" class="btn btn-info" type="button" value="Channel" onclick="View1('@item.Doctor_ID')" />
+                        <input id="Button2" class="btn btn-success" type="button" value="Home Visit"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    }
+
+
+</div>

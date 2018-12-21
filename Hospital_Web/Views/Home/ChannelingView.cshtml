@@ -1,0 +1,81 @@
+﻿@{
+    var chan1 = ViewBag.chan1 as IEnumerable<Hospital_Web.Models.Channel>;
+}
+
+@using Hospital_Web.Models;
+
+
+@if (chan1 != null)
+{
+    <h2 class="text-center">Channeling Details</h2>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-3">
+            
+        </div>
+        <div class="col-sm-2">
+            <h4 class="pull-right">Search</h4>
+            </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="searchtext2" onkeyup="Search2()" placeholder="Search" />
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Img/refresh.png" class="pull-left" title="Refresh" alt="Refresh" style="width:32px; height:32px; cursor:pointer " onclick="nav1('@Url.Action("ChannelingView","Home")')" />
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10" style="overflow:auto ; height:500px">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Doctor</th>
+                        <th style="text-align:center">Date</th>
+                        <th style="text-align:center">Patient</th>
+                        <th style="text-align:center">Contact</th>
+                    </tr>
+                </thead>
+                <tbody id="SearchView">
+                    @foreach (Channel item in chan1)
+                    {
+
+                        <tr class="sview2">
+                            <td>@item.Doctor.Doctor_Name.ToString().Trim()</td>
+                            <td>@item.Channel_Date2.Value.Date.ToString("yyyy:MM:dd").Trim()</td>
+                            <td>@item.User_Details.First_Name @item.User_Details.Last_Name</td>
+                            <td>@item.Contact1.ToString().Trim()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+}
+
+<div id="vmodal3">
+
+</div>
+
+
+<script>
+    function Contains2(t1, t2) {
+        if (t1.indexOf(t2) != -1) {
+            return true;
+        }
+    }
+
+    function Search2() {
+        var searchtext1 = $("#searchtext2").val().toLowerCase().trim();
+        $(".sview2").each(function () {
+            if (!Contains2($(this).text().toLowerCase().trim(), searchtext1)) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        })
+    }
+</script>

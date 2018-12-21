@@ -1,0 +1,192 @@
+﻿@using Hospital_Web.Models;
+
+@{
+    var doc = ViewBag.doc as Hospital_Web.Models.Doctor;
+}
+
+
+
+
+    <div class="modal fade" id="ShowModa2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" href="#" data-dismiss="modal">&times;</a>
+                    @*<h4>Registration Form</h4>*@
+                    <div id="msg1">
+                        <div class="alert alert-success">
+                            <span class="glyphicon glyphicon-ok"></span><strong> Success...! </strong>
+                        </div>
+                    </div>
+                    <div id="msg2">
+                        <div class="alert alert-danger">
+                            <span class="glyphicon glyphicon-remove"></span><strong> Unuccess...! </strong>
+                        </div>
+                    </div>
+
+                    <div id="mview1" class="text-center">
+                        <img src="@ViewImages.View1(doc.Img, doc.Gender)" style="width:40%; height:auto" />
+                        <h4 id="name1">Doctor : @doc.Doctor_Name</h4>
+                        <h5 id="spec1">Specialty : @doc.Specialty.Specialty1</h5>
+                        <h5 id="hos1">Hostpital : @doc.Hostpital</h5>
+                        <h5 id="con1">Contact : @doc.Contact1</h5>
+                        <table class="table table-bordered text-center table-responsive">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Date</th>
+                                    <th style="text-align:center">Time</th>
+                                    <th style="text-align:center">Number</th>
+                                    <th style="text-align:center">Channel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in GetCNumber.getCNo(doc.Work_Date.ToList()))
+    {
+                               <tr>
+                                   <td>@item.Date1</td>
+                                   <td>@item.stime1 - @item.etime1</td>
+                                   <td>@item.count1/@item.max1</td>
+                                   <td><button class="btn btn-info" onclick="ViewFeild1('@item.wd_id','@item.day1','@item.stime1 - @item.etime1','@doc.Doctor_ID','@item.Date1','@item.No1','@item.max1','@item.count1')">Select</button></td>
+                               </tr>
+}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <form id="Registration">
+
+                        <input type="hidden" value="0" id="wd_id1" />
+                        <input type="hidden" value="0" id="doc_id1" />
+                        <input type="hidden" value="0" id="cdate" />
+                        <input type="hidden" value="0" id="cno1" />
+
+                        <br />
+
+                        <div class="form-group" id="nicdiv">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+                                <input type="text" class="form-control" name="nic2" id="nic2" placeholder="NIC or Passport Number" onkeyup="NICValid()" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="fndiv">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" name="fn2" id="fn2" placeholder="First Name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="lndiv">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" name="ln2" id="ln2" placeholder="Last Name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="teldiv">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                <input type="text" class="form-control" name="con2" id="con2" placeholder="Contact No.1" />
+                            </div>
+                        </div>
+
+
+                    </form>
+                    <div class="form-group" id="btndiv">
+                        <button class="btn btn-danger form-control" type="submit" onclick="Channel1()"><i class="glyphicon glyphicon-registration-mark"></i> Channel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        $("#nicdiv").hide();
+        $("#fndiv").hide();
+        $("#lndiv").hide();
+        $("#teldiv").hide();
+        $("#btndiv").hide();
+
+        function ViewFeild1(id1, day1, time1, doc_id, date1, no1, max1,count1) {
+
+            var n1 = parseInt(count1);
+            var m1 = parseInt(max1);
+
+            if (n1<m1) {
+                alert("You Select " + day1 + " " + time1 + ". Please Enter Your Details and Click Channel Button");
+                $("#cdate").val(date1);
+                $("#doc_id1").val(doc_id);
+                $("#wd_id1").val(id1);
+                $("#cno1").val(no1);
+                $("#nicdiv").show();
+                $("#fndiv").show();
+                $("#lndiv").show();
+                $("#teldiv").show();
+                $("#btndiv").show();
+            } else {
+                alert("Maximum Number Exceeded");
+                $("#nicdiv").hide();
+                $("#fndiv").hide();
+                $("#lndiv").hide();
+                $("#teldiv").hide();
+                $("#btndiv").hide();
+            }
+
+            
+        }
+
+        function Channel1() {
+            var wd_id = $("#wd_id1").val();
+            var doc_id1= $("#doc_id1").val();
+            var nic2 = $("#nic2").val();
+            var cdate = $("#cdate").val();
+            var fn2 = $("#fn2").val();
+            var ln2 = $("#ln2").val();
+            var con2 = $("#con2").val();
+            var cno1 = $("#cno1").val();
+            $.ajax({
+                type: "post",
+                data: { nic1: nic2, fn2: fn2, ln2: ln2, con2: con2, wd_id: wd_id, doc_id1: doc_id1, cdate: cdate, cno1: cno1 },
+                url: "/Channel/ChannelDoctor",
+                success: function (result) {
+                    if (result == "U") {
+                        alert("Unsuccess");
+                        $("#ShowModa2 .close").click();
+                    } else {
+                        alert("Chennelling Success. Your Number is " + result);
+                        $("#ShowModa2 .close").click();                        
+                    }
+                }
+            });
+        }
+
+        function NICValid() {
+            var nic = $("#nic2").val();
+
+            if (nic.length >= 8) {
+
+                $.ajax({
+                type: "post",
+                data: {nic1:nic},
+                url: "/Channel/CheckNICAndPassport",
+                success: function (result) {
+                    if (result == "S") {
+                        $("#fndiv").hide();
+                        $("#lndiv").hide();
+                        $("#teldiv").hide();
+                    } else {
+                        $("#fndiv").show();
+                        $("#lndiv").show();
+                        $("#teldiv").show();
+                    }
+                }
+            });
+            }
+        }
+
+    </script>

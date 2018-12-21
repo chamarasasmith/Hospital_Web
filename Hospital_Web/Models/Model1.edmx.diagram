@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73f98358860048219fb357f091d4bd4f" Name="Diagram1">
+        <EntityTypeShape EntityType="Hospital_WebModel.Channel" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Date1" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Doctor" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Home_Visit" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Login" Width="1.5" PointX="10" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Not_Coming" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Page1" Width="1.5" PointX="7.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Role_Page" Width="1.5" PointX="10" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Role1" Width="1.5" PointX="7.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Sick" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Sick_Visit" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Specialty" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.User_Details" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_WebModel.Work_Date" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Channel_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Channel_User_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Work_Date_Date1" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Doctor_Specialty" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Home_Visit_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Not_Coming_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Work_Date_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Home_Visit_User_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Sick_Visit_Home_Visit" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Login_Role1" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Login_User_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Role_Page_Page1" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Role_Page_Role1" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_WebModel.FK_Sick_Visit_Sick" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

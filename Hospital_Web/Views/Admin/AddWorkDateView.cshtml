@@ -1,0 +1,113 @@
+﻿@using Hospital_Web.Models;
+
+@{
+    var date1 = ViewBag.date1 as IEnumerable<Hospital_Web.Models.Date1>;
+}
+@{
+    var doc = ViewBag.doc as IEnumerable<Hospital_Web.Models.Doctor>;
+}
+
+
+
+
+<div class="modal fade" id="ShowModa3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" href="#" data-dismiss="modal">&times;</a>
+                @*<h4>Registration Form</h4>*@
+                <div id="msg1">
+                    <div class="alert alert-success">
+                        <span class="glyphicon glyphicon-ok"></span><strong> Success...! </strong>
+                    </div>
+                </div>
+                <div id="msg2">
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-remove"></span><strong> Unuccess...! </strong>
+                    </div>
+                </div>
+
+                <div id="mview1" class="text-center">
+                    <h4 style="color:darkorchid; font-weight:bold">Add Working Dates</h4>
+                    <img src="~/Img/schedule.png" style="width:40%"/>
+              </div>
+
+            </div>
+            <div class="modal-body">
+                <form id="SaveWDForm">
+
+                    <br />
+
+
+                    <select id="sedate1" class="form-control" style="width:100%">
+                        <option value="0">Select Date</option>
+                        @foreach (Date1 item in date1)
+        {
+                <option value="@item.Date_ID">@item.Date_Of_Week</option>
+}
+
+                    </select>
+                    </br>
+                    <select id="sedoc1" class="form-control" style="width:100%">
+                        <option value="0">Select Doctor</option>
+                        @foreach (Doctor item in doc)
+        {
+                <option value="@item.Doctor_ID">@item.Doctor_Name</option>
+}
+
+                    </select>
+                    </br>
+                    <input type="number" id="pcount" class="form-control" placeholder="Max Patient Count"/>
+                    </br>
+                    <input type="time" class="form-control" id="s_time1" />
+                    </br>
+                    <input type="time" class="form-control" id="e_time1" />
+                    </br>
+                </form>
+                <div class="form-group">
+                    <button class="btn btn-danger form-control" onclick="SaveWorkDates()" type="submit"><i class="glyphicon glyphicon-floppy-saved"></i> Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function SaveWorkDates() {
+
+        if (!$("#s_time1").val() || !$("#e_time1").val()) {
+            $("#msg2").show();
+            $("#msg1").hide();
+            $("#SaveWDForm")[0].reset();
+        } else {
+            var data1 = new FormData;
+        data1.append("Date_ID", $("#sedate1").val());
+        data1.append("Doctor_ID", $("#sedoc1").val());
+        data1.append("Start_Time", $("#s_time1").val());
+        data1.append("End_Time", $("#e_time1").val());
+        data1.append("Patient", $("#pcount").val());
+
+        $.ajax({
+            type: "post",
+            url: "/Admin/SaveWD",
+            data: data1,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == "S") {
+                    $("#msg1").show();
+                    $("#msg2").hide();
+                    $("#SaveWDForm")[0].reset();
+                    $("#ShowModa3 .close").click();
+                    nav1('@Url.Action("WorkDayView","Home")');
+                } else {
+                    $("#msg2").show();
+                    $("#msg1").hide();
+                    $("#SaveWDForm")[0].reset();
+                }
+            }
+        });
+        }
+
+    }
+</script>

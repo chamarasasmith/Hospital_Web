@@ -1,0 +1,236 @@
+﻿@{
+    var doc1 = ViewBag.doc1 as IEnumerable<Hospital_Web.Models.Doctor>;
+}
+
+@{
+    var spec1 = ViewBag.spec1 as IEnumerable<Hospital_Web.Models.Specialty>;
+}
+
+@using Hospital_Web.Models;
+
+
+<div class="row">
+    <h2 class="text-center">Doctor</h2>
+    <br />
+    <br />
+    <div class="col-sm-4">
+        <h4>Add New Doctor</h4>
+        <br />
+        <br />
+        <form id="DoctorSaveForm" enctype="multipart/form-data">
+            <input id="d_name1" name="d_name1" class="form-control" type="text" placeholder="Doctor Name" /><br />
+            <select id="spec2" name="spec2" class="form-control">
+                <option>Select Specialty</option>
+                @if (spec1 != null)
+            {
+                foreach (var item in spec1)
+                {
+                    <option>@item.Specialty_ID.ToString().Trim():@item.Specialty1.ToString().Trim()</option>
+        }
+    }
+
+            </select>
+            <br />
+            <select id="gen2" name="gen2" class="form-control">
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <br />
+            <input id="hos2" name="hos2" class="form-control" type="text" placeholder="Hostpital" /><br />
+            <input id="con1" name="con1" class="form-control" type="text" placeholder="Contact 1" /><br />
+            <input id="con2" name="con2" class="form-control" type="text" placeholder="Contact 2" /><br />
+            <input id="img2" name="img2" type="file" /><br />
+            <input id="Submit1" class="btn btn-success btn-block" type="button" value="Save" onclick="SaveDoctor()" /><br />
+
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <h4>Update Doctor</h4>
+        <br />
+        <br />
+        <form id="DoctorUpdateForm">
+            <select id="sdoc1" name="sdoc1" class="form-control" onchange="SelectDoctor1()">
+                <option>Select Doctor</option>
+                @if (doc1 != null)
+        {
+            foreach (var item in doc1)
+            {
+                <option>@item.Doctor_ID.ToString().Trim():@item.Doctor_Name.ToString().Trim()</option>
+    }
+}
+
+            </select>
+            <br />
+            <input id="sdname" name="sdname" class="form-control" type="text" placeholder="Doctor Name" /><br />
+            <select id="sspec" name="sspec" class="form-control">
+                <option>Select Specialty</option>
+                @if (spec1 != null)
+        {
+            foreach (var item in spec1)
+            {
+                <option>@item.Specialty_ID.ToString().Trim():@item.Specialty1.ToString().Trim()</option>
+    }
+}
+
+            </select>
+            <br />
+            <select id="sgen" name="sgen" class="form-control">
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <br />
+            <input id="shos" name="shos" class="form-control" type="text" placeholder="Hostpital" /><br />
+            <input id="scon1" name="scon1" class="form-control" type="text" placeholder="Contact 1" /><br />
+            <input id="scon2" name="scon2" class="form-control" type="text" placeholder="Contact 2" /><br />
+            <input id="simg" name="simg" type="file" /><br />
+            <input id="Submit1" class="btn btn-info btn-block" type="button" value="Update" onclick="UpdateDoctor()"/><br />
+        </form>
+
+    </div>
+    <div class="col-sm-4">
+        <h4>Doctor's Status</h4>
+        <br />
+        <br />
+        <form id="DoctorStatusForm">
+            <select id="ddoc1" name="ddoc1" class="form-control">
+                <option>Select Doctor</option>
+                @if (doc1 != null)
+                {
+                    foreach (var item in doc1)
+                    {
+                        var st = (item.Status.Trim() == "1") ? "Active" : "Deactive";
+                <option>@item.Doctor_ID.ToString().Trim():@item.Doctor_Name.ToString().Trim(): @st</option>
+    }
+}
+
+            </select>
+            <br />
+            <input id="Submit1" class="btn btn-info btn-block" type="button" value="Active" onclick="SetDStatus1()" />
+            <br />
+            <input id="Submit1" class="btn btn-danger btn-block" type="button" value="Deactive" onclick="SetDStatus0()" /><br />
+        </form>
+    </div>
+
+</div>
+
+
+<script>
+
+    function UpdateDoctor() {
+        var file = $("#simg").get(0).files;
+        var data1 = new FormData;
+        data1.append("ImageFile", file[0]);
+        data1.append("d_id1", $("#sdoc1").val());
+        data1.append("d_name1", $("#sdname").val());
+        data1.append("spec2", $("#sspec").val());
+        data1.append("hos2", $("#shos").val());
+        data1.append("con1", $("#scon1").val());
+        data1.append("con2", $("#scon2").val());
+        data1.append("gender", $("#sgen").val());
+
+        $.ajax({
+            type: "post",
+            url: "/Admin/UpdateDoctor",
+            data: data1,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                alert(result);
+                $("#DoctorUpdateForm")[0].reset();
+            }
+        });
+    }
+
+
+    function SetDStatus1() {
+        var doc = $("#ddoc1").val();
+        $.ajax({
+            type: "post",
+            data: { doc: doc },
+            url: "/Admin/SetDStatus1",
+            success: function (result) {
+                if (result != "U") {
+                    alert(result)
+                    $("#DoctorStatusForm")[0].reset();
+                } else {
+                    alert("Unsuccess");
+                    $("#DoctorStatusForm")[0].reset();
+                }
+            }
+        });
+    }
+
+    function SetDStatus0() {
+        var doc = $("#ddoc1").val();
+        $.ajax({
+            type: "post",
+            data: { doc: doc },
+            url: "/Admin/SetDStatus0",
+            success: function (result) {
+                if (result != "U") {
+                    alert(result)
+                    $("#DoctorStatusForm")[0].reset();
+                } else {
+                    alert("Unsuccess");
+                    $("#DoctorStatusForm")[0].reset();
+                }
+            }
+        });
+    }
+
+
+    function SelectDoctor1() {
+        var doc= $("#sdoc1").val();
+        $.ajax({
+            type: "post",
+            data: { doc: doc },
+            url: "/Admin/SelectDoctor1",
+            success: function (result) {
+                if (result != "U") {
+                    $("#sdname").val(result.dname1);
+                    $("#sspec").val(result.spec1);
+                    $("#sgen").val(result.gen1);
+                    $("#shos").val(result.hos1);
+                    $("#scon1").val(result.con_1);
+                    $("#scon2").val(result.con_2);
+                } else {
+                    $("#DoctorUpdateForm")[0].reset();
+                }
+            }
+        });
+    }
+
+    
+
+    function SaveDoctor() {
+        var file = $("#img2").get(0).files;
+        var data1 = new FormData;
+        data1.append("ImageFile", file[0]);
+        data1.append("d_id1", "");
+        data1.append("d_name1", $("#d_name1").val());
+        data1.append("spec2", $("#spec2").val());
+        data1.append("hos2", $("#hos2").val());
+        data1.append("con1", $("#con1").val());
+        data1.append("con2", $("#con2").val());
+        data1.append("gender", $("#gen2").val());
+        
+        $.ajax({
+            type: "post",
+            url: "/Admin/SaveDoctor",
+            data: data1,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                alert(result);
+                $("#DoctorSaveForm")[0].reset();
+            }
+        });
+    }
+
+
+    
+
+
+</script>
